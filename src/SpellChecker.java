@@ -54,35 +54,35 @@ public class SpellChecker
         int numChecks = 0;
         int firstInd = 0;
         int lastInd = dictionary.size() - 1;
-
-        while (firstInd <= lastInd) {
+        System.out.println(dictionary.get(63571));
+        while (firstInd + 2 <= lastInd) {
             numChecks++;
-            int mid = ((firstInd + lastInd) / 2) + 1;
-            if (dictionary.get(mid).compareTo(word) < 0) {
+            int mid = ((firstInd + lastInd) / 2) - 1;
+            if (word.compareTo(dictionary.get(mid)) < 0) {
+                lastInd = mid - 1;
+            }
+            else if (word.compareTo(dictionary.get(mid)) > 0) {
+
                 firstInd = mid + 1;
             }
-            else if (dictionary.get(mid).compareTo(word) > 0) {
-
-                lastInd = mid - 1 ;
-            }
-            else {
+            else  {
                 System.out.println("-- BINARY SEARCH: Number of words checked (loops/runtime): " + numChecks);
                 return true;
             }
-            System.out.println("test");
+            System.out.println("firstInd: " + firstInd + " / lastInd: " + lastInd);
         }
         System.out.println("BINARY SEARCH: Number of words checked (loops/runtime): " + numChecks);
         return false;
     }
 
-    public boolean myBinarySearch(String word) {
-        int mid = dictionary.size() / 2;
-        while (mid != 1) {
-            if (word.compareTo(dictionary.get(mid)) < 0) {
-            dictionary = dictionary.removeRange(0,mid);
-            }
-        }
-    }
+//    public boolean myBinarySearch(String word) {
+//        int mid = dictionary.size() / 2;
+//        while (mid != 1) {
+//            if (word.compareTo(dictionary.get(mid)) < 0) {
+//            dictionary = dictionary.removeRange(0,mid);
+//            }
+//        }
+//    }
     public void importDictionary()
     {
         String[] tmp = null;
